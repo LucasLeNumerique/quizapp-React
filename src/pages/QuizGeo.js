@@ -8,27 +8,15 @@ const [currentQuestion, setCurrentQuestion] = useState(0)
 const [myAnswer, setMyAnwser] = useState("")
 const [score, setScore] = useState(0)
 const [finished, setFinish] = useState(false)
-const [show, setShow] = useState(false)
-const [clickAnswer, setClickAnswer] = useState(false)
 
 const checkAnswer = (proposition) => {
     setMyAnwser(proposition)
-    setClickAnswer(true)
 }
 
 const checkCorrectAnswer = () => {
     if (myAnswer === dataGeo[currentQuestion].answer) {
         setScore(score + 1)
     }
-}
-
-const showAnswer = () => {
-    setShow(true)
-}
-
-const reset = () => {
-    setShow(false)
-    setClickAnswer(false)
 }
 
 const endQuiz = () => {
@@ -67,10 +55,10 @@ if (finished) {
       
         <h2 className="Question"> {dataGeo[currentQuestion].question} </h2>
 
-        <div class="Propositions">
+        <div className="Propositions">
 
             {dataGeo[currentQuestion].propositions.map((proposition) => (
-                <p className="proposition">
+                <div className="proposition">
 
                 <span className="answer"
                 key={proposition.id}
@@ -79,7 +67,7 @@ if (finished) {
                 {proposition}
                 </span>
 
-                </p>
+                </div>
             ))}
         </div>
         
@@ -89,11 +77,10 @@ if (finished) {
             onClick={() => {
             setCurrentQuestion(currentQuestion + 1)
             checkCorrectAnswer()
-            reset()
             }}
             className="quiz-btns"
             >
-            Next
+            Suivant
             </button>
             )}
 
@@ -102,7 +89,7 @@ if (finished) {
             onClick={() => endQuiz()}
             className="quiz-btns"
             >
-            FINISH
+            Terminer
             </button>
             )}
 
