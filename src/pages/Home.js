@@ -12,14 +12,26 @@ function Home() {
             <ul>
                 <li>
                     <Link
-                    to="/quiz-pays-et-capitales">
+                    to="/pays-et-capitales">
                     Pays et capitales
                     </Link>
                 </li>
                 <li>
                     <Link
-                    to="/quiz-surnom-de-joueurs">
-                    Les surnoms des joueurs
+                    to="/surnom-de-joueurs">
+                    Surnoms des joueurs célèbres
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                    to="/rappeurs">
+                    Rappeurs
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                    to="/symboles-chimiques">
+                    Symboles chimiques
                     </Link>
                 </li>
             </ul>
