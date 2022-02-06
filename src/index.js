@@ -14,12 +14,12 @@ export default function Routing() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="/pays-et-capitales" element={<QuizGeo />} />
-          <Route path="/surnom-de-joueurs" element={<QuizSport />} />
-          <Route path="/rappeurs" element={<QuizRap />} />
-          <Route path="/symboles-chimiques" element={<QuizScience />} />
-          <Route path="*" element={<NoPage />} />
+          <Route index element={<Home />} />    {/* Composant-page d'accueil */}
+          <Route path="/pays-et-capitales" element={<QuizGeo />} />    {/* Composant-page du Quiz */}
+          <Route path="/surnom-de-joueurs" element={<QuizSport />} />    {/* Composant-page du Quiz */}
+          <Route path="/rappeurs" element={<QuizRap />} />    {/* Composant-page du Quiz */}
+          <Route path="/symboles-chimiques" element={<QuizScience />} />    {/* Composant-page du Quiz */}
+          <Route path="*" element={<NoPage />} />    {/* Erreur 404 */}
         </Route>
       </Routes>
     </BrowserRouter>
