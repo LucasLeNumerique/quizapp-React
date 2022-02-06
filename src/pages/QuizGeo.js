@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { dataGeo } from "../json/data-geo"
+import { dataGeo } from "../json/dataGeo"
 
 function QuizGeo() {
   
@@ -46,77 +46,73 @@ const startOver = () => {   // Quizz reset
 
 if (finished) {
     return (
-        <div className="Quiz-container">
-        <h2> Quiz terminé ! Merci d'avoir participé ! </h2>
-        <h3> Votre score final est de {score} / {dataGeo.length} </h3>
+        <>
+            <h2> Quiz terminé ! Merci d'avoir participé ! </h2>
+            <h3> Votre score final est de {score} / {dataGeo.length} </h3>
+            
+            <button className="go-back"
+            onClick={() => startOver()}>
+            Refaire ce quiz
+            </button>
 
-        <button
-        onClick={() => startOver()}>
-        Refaire ce quiz
-        </button>
-
-        <Link
-        to="/">
-        Retour au menu
-        </Link>
-    </div> 
-  )
+            <Link
+            to="/">
+            Retour au menu
+            </Link>
+        </> 
+    )
 } else {
-  return (
-    <div className="Quiz-container">
+    return (
+    <>
       
-      <h2 className="Question"> {dataGeo[currentQuestion].question} </h2>
+        <h2 className="Question"> {dataGeo[currentQuestion].question} </h2>
 
-        {dataGeo[currentQuestion].propositions.map((proposition) => (
-          <ul className="Propositions">
+        <div class="Propositions">
 
-            <li className="Answers"
-            key={proposition.id}
-            className={`proposition ${
-            myAnswer === proposition
-            ? myAnswer === dataGeo[currentQuestion].answer
-            ? "correctAnswer"
-            : "incorrectAnswer"
-            : null
-            }`}
-            onClick={() => checkAnswer(proposition)}
+            {dataGeo[currentQuestion].propositions.map((proposition) => (
+                <p className="proposition">
+
+                <span className="answer"
+                key={proposition.id}
+                onClick={() => checkAnswer(proposition)}
+                >
+                {proposition}
+                </span>
+
+                </p>
+            ))}
+        </div>
+        
+        <div className="bottom-quiz">
+            {currentQuestion < dataGeo.length - 1 && (
+            <button
+            onClick={() => {
+            setCurrentQuestion(currentQuestion + 1)
+            checkCorrectAnswer()
+            reset()
+            }}
+            className="quiz-btns"
             >
-              {proposition}
-            </li>
+            Next
+            </button>
+            )}
 
-          </ul>
-          ))}
+            {currentQuestion === dataGeo.length - 1 && (
+            <button
+            onClick={() => endQuiz()}
+            className="quiz-btns"
+            >
+            FINISH
+            </button>
+            )}
 
-        {currentQuestion < dataGeo.length - 1 && (
-        <button
-        onClick={() => {
-        setCurrentQuestion(currentQuestion + 1)
-        checkCorrectAnswer()
-        reset()
-        }}
-        >
-        NEXT
-        </button>
-        )}
+        <span className="progress"> Question {currentQuestion + 1} / {dataGeo.length} </span>
+      </div>
 
-        {currentQuestion === dataGeo.length - 1 && (
-        <button
-        onClick={() => endQuiz()}
-        >
-          FINISH
-        </button>
-        )}
-
-    
-
-      <span className="progress"> Question {currentQuestion + 1} / {dataGeo.length} </span>
-
-    </div> 
+    </> 
   )
 }
 
 }
-
-
 
 export default QuizGeo;

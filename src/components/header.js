@@ -5,7 +5,7 @@ function Header() {
         <nav>
             <Link
             to="/">
-            Accueil
+            Liste des quiz
             </Link>
         </nav>
     )
