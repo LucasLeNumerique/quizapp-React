@@ -31,7 +31,7 @@ export const dataSport = [
     },
     {
         id: '5',
-        question: 'Quel sportif était surnommé « Le Méchant » ?',
+        question: 'Quel sportif était surnommé le Méchant ?',
         answer: 'Ilie Nastase',
         propositions: ['Mike Tyson', 'Diego Maradona', 'Ilie Nastase', 'Romario']
     },
