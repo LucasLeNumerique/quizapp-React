@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { data } from "./data"
+import { dataGeo } from "./json/data-geo"
 
 function App() {
   
@@ -16,7 +16,7 @@ const checkAnswer = (proposition) => {
 }
 
 const checkCorrectAnswer = () => {
-  if (myAnswer === data[currentQuestion].answer) {
+  if (myAnswer === dataGeo[currentQuestion].answer) {
     setScore(score + 1)
   }
 }
@@ -31,7 +31,7 @@ const reset = () => {
 }
 
 const endQuiz = () => {
-  if (currentQuestion === data.length - 1) {
+  if (currentQuestion === dataGeo.length - 1) {
     setFinish(true)
   }
 }
@@ -47,7 +47,7 @@ if (finished) {
   return (
     <div className="Quiz-container">
       <h2> Quiz terminé ! Merci d'avoir participé ! </h2>
-      <h3> Votre score final est de {score} / {data.length} </h3>
+      <h3> Votre score final est de {score} / {dataGeo.length} </h3>
 
       <button
       onClick={() => startOver()}>
@@ -59,16 +59,16 @@ if (finished) {
   return (
     <div className="Quiz-container">
       
-      <h2 className="Question"> {data[currentQuestion].question} </h2>
+      <h2 className="Question"> {dataGeo[currentQuestion].question} </h2>
 
-        {data[currentQuestion].propositions.map((proposition) => (
+        {dataGeo[currentQuestion].propositions.map((proposition) => (
           <ul className="Propositions">
 
             <li className="Answers"
             key={proposition.id}
             className={`proposition ${
             myAnswer === proposition
-            ? myAnswer === data[currentQuestion].answer
+            ? myAnswer === dataGeo[currentQuestion].answer
             ? "correctAnswer"
             : "incorrectAnswer"
             : null
@@ -81,7 +81,7 @@ if (finished) {
           </ul>
           ))}
 
-        {currentQuestion < data.length - 1 && (
+        {currentQuestion < dataGeo.length - 1 && (
         <button
         onClick={() => {
         setCurrentQuestion(currentQuestion + 1)
@@ -93,7 +93,7 @@ if (finished) {
         </button>
         )}
 
-        {currentQuestion === data.length - 1 && (
+        {currentQuestion === dataGeo.length - 1 && (
         <button
         onClick={() => endQuiz()}
         >
@@ -103,7 +103,7 @@ if (finished) {
 
     
 
-      <span className="progress"> Question {currentQuestion} / {data.length - 1} </span>
+      <span className="progress"> Question {currentQuestion + 1} / {dataGeo.length} </span>
 
     </div> 
   )

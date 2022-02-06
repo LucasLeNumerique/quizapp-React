@@ -1,4 +1,4 @@
-export const data = [
+export const dataGeo = [
     {
         id: '0',
         question: 'Quelle est la capitale du Pérou ?',
