@@ -4,22 +4,22 @@ import { dataGeo } from "../json/dataGeo"
 
 function QuizGeo() {
   
-const [currentQuestion, setCurrentQuestion] = useState(0)
-const [myAnswer, setMyAnwser] = useState("")
-const [score, setScore] = useState(0)
-const [finished, setFinish] = useState(false)
+const [currentQuestion, setCurrentQuestion] = useState(0)   // Index array[0]
+const [myAnswer, setMyAnwser] = useState("")    // Réponse nulle
+const [score, setScore] = useState(0)   // Score nul ou réinitialisé
+const [finished, setFinish] = useState(false)   // Pas de changement de rendu (game over) tant que le booléen est false
 
-const checkAnswer = (proposition) => {
+const checkAnswer = (proposition) => {  // Assigner la réponse
     setMyAnwser(proposition)
 }
 
-const checkCorrectAnswer = () => {
+const checkCorrectAnswer = () => {  // Vérifier la réponse
     if (myAnswer === dataGeo[currentQuestion].answer) {
         setScore(score + 1)
     }
 }
 
-const endQuiz = () => {
+const endQuiz = () => {     // Booléen finish true pour afficher le Game Over
     if (currentQuestion === dataGeo.length - 1) {
         setFinish(true)
     }
@@ -37,6 +37,7 @@ if (finished) {
         <>
             <h2> Quiz terminé ! Merci d'avoir participé ! </h2>
             <h3> Votre score final est de {score} / {dataGeo.length} </h3>
+            {/* Affichage du score final */}
             
             <button className="go-back"
             onClick={() => startOver()}>
@@ -57,6 +58,7 @@ if (finished) {
 
         <div className="Propositions">
 
+            {/* Récupérer la liste des propositions (non random malheureusement) */}
             {dataGeo[currentQuestion].propositions.map((proposition) => (
                 <div className="proposition">
 
@@ -84,6 +86,7 @@ if (finished) {
             </button>
             )}
 
+            {/* Changement de bouton à la dernière question */}
             {currentQuestion === dataGeo.length - 1 && (
             <button
             onClick={() => endQuiz()}
@@ -93,6 +96,7 @@ if (finished) {
             </button>
             )}
 
+            {/** Affichage de la progression */}
         <span className="progress"> Question {currentQuestion + 1} / {dataGeo.length} </span>
       </div>
 
